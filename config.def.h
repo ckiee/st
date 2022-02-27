@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "JetBrains Mono:size=10:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -45,7 +45,7 @@ int allowaltscreen = 1;
 
 /* allow certain non-interactive (insecure) window operations such as:
    setting the clipboard text */
-int allowwindowops = 0;
+int allowwindowops = 1;
 
 /*
  * draw latency range in ms - from new content/keypress/etc until drawing.
@@ -74,7 +74,7 @@ static unsigned int cursorthickness = 2;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-256color";
+char *termname = "st-24bits";
 
 /*
  * spaces per tab
@@ -91,7 +91,10 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
+
+/* bg opacity */
+float alpha = 0.9;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -100,7 +103,7 @@ static const char *colorname[] = {
 	"red3",
 	"green3",
 	"yellow3",
-	"blue2",
+	"#2626ee", // blue2 is too dark
 	"magenta3",
 	"cyan3",
 	"gray90",
@@ -120,8 +123,10 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	"white", /* default foreground colour */
+	"#1b1720", /* default background colour */
+	"#39b1c4", // cursor
+	"#cc0000"
 };
 
 
@@ -131,7 +136,7 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 258;
 unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
+unsigned int defaultcs = 260;
 static unsigned int defaultrcs = 257;
 unsigned int const currentBg = 6, buffSize = 2048;
 /// Enable double / triple click yanking / selection of word / line.
@@ -208,8 +213,8 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+	{ TERMMOD,              XK_Prior,       zoom,           {.f = +2} },
+	{ TERMMOD,              XK_Next,        zoom,           {.f = -2} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
