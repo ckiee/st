@@ -2563,11 +2563,8 @@ check_control_code:
 		 */
 		return;
 	}
-<<<<<<< HEAD
-	if (selected(term.c.x, term.c.y))
-		selclear();
-=======
->>>>>>> julius/patch_vim
+	/* if (selected(term.c.x, term.c.y)) */
+	/* 	selclear(); */
 
 	gp = &term.line[term.c.y][term.c.x];
 	if (IS_SET(MODE_WRAP) && (term.c.state & CURSOR_WRAPNEXT)) {
