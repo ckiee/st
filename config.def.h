@@ -126,7 +126,8 @@ static const char *colorname[] = {
 	"white", /* default foreground colour */
 	"#1b1720", /* default background colour */
 	"#39b1c4", // cursor
-	"#cc0000"
+	"#cc0000", // debug color
+	"#712dc3", // vim browse overlay bg
 };
 
 
@@ -138,7 +139,7 @@ unsigned int defaultfg = 258;
 unsigned int defaultbg = 259;
 unsigned int defaultcs = 260;
 static unsigned int defaultrcs = 257;
-unsigned int const currentBg = 6, buffSize = 2048;
+unsigned int const currentBg = 262, buffSize = 2048;
 /// Enable double / triple click yanking / selection of word / line.
 int const mouseYank = 1, mouseSelect = 0;
 /// [Vim Browse] Colors for search results currently on screen.
