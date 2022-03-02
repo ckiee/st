@@ -159,7 +159,7 @@ ExitState kPressHist(char const *cs, size_t len, int ctrl, KeySym const *kSym) {
 	          quantifier=num&&(cs[0]!='0'||state.m.c), ins=!search &&noOp &&len &&cs[0]=='i';
 	exited = 0;
 	ExitState result = success;
-	if (esc || ret || ins) { result = exitMotion, len = 0;
+	if (esc || ret || ins || cs[0] == 'q') { result = exitMotion, len = 0;
 	} else if (kSym && *kSym == XK_BackSpace) {
 		if ((search || state.m.c) && size(&cCmd)) pop(&cCmd);
 		if (search) {
