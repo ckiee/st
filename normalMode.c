@@ -116,6 +116,8 @@ ExitState executeMotion(char const cs, KeySym const *const ks) {
 	else if (cs == 'j') historyMove(0,  (int)state.m.c, 0);
 	else if (cs == 'h') historyMove(-(int)state.m.c, 0, 0);
 	else if (cs == 'l') historyMove( (int)state.m.c, 0, 0);
+	else if (cs == 'u') historyMove(0, -(int)state.m.c * (term.row / 2), 0);
+	else if (cs == 'd') historyMove(0, (int)state.m.c * (term.row / 2), 0);
 	else if (cs == 'H') term.c.y = 0;
 	else if (cs == 'M') term.c.y = term.bot / 2;
 	else if (cs == 'L') term.c.y = term.bot;
@@ -175,8 +177,7 @@ ExitState kPressHist(char const *cs, size_t len, int ctrl, KeySym const *kSym) {
 	} else if (len == 0) { result = failed;
 	} else if (quantifier) { state.m.c = min(SHRT_MAX, (int)state.m.c*10+cs[0]-48);
 	} else if (state.cmd.infix && state.cmd.op && (result = expandExpression(cs[0]), len=0)) {
-    } else if (cs[0] == 'd') { state = defaultNormalMode; result = exitMotion; state.m.active = 1;
-	} else if (cs[0] == '.') {
+    } else if (cs[0] == '.') {
 		if (size(&cCmd)) assign(&lCmd, &cCmd);
 		empty(&cCmd);
 		executeCommand((uint32_t*) lCmd.content, size(&lCmd));
