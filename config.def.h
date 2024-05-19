@@ -74,7 +74,7 @@ static unsigned int cursorthickness = 2;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-24bits";
+char *termname = "xterm"; // lies and deceit
 
 /*
  * spaces per tab
